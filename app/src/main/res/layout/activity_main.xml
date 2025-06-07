@@ -23,6 +23,7 @@
             android:id="@+id/switchLanterna"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
     </LinearLayout>
 
@@ -43,6 +44,7 @@
             android:id="@+id/switchVibracao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
     </LinearLayout>
 
@@ -52,6 +54,7 @@
         android:layout_height="wrap_content"
         android:text="@string/classificarLeituras"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:onClick="classificarLeituras"/>
 
 </RelativeLayout>

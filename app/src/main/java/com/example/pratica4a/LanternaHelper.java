@@ -4,6 +4,7 @@ import android.content.Context;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
+import android.util.Log;
 
 public class LanternaHelper {
 
@@ -30,6 +31,7 @@ public class LanternaHelper {
     public void ligar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
+                Log.d("LANTERNA", "Ligando lanterna");
                 cameraManager.setTorchMode(cameraId, true);
             } catch (CameraAccessException e) {
                 e.printStackTrace();
