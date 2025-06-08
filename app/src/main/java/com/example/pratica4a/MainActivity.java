@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
@@ -124,9 +125,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     protected void onActivityResult(int codigoRequisicao, int codigoResultado, Intent it) {
 
-        if(it == null) {
-            return;
-        } else if(codigoRequisicao == 10) {
+        if(codigoRequisicao == 10) {
             String luz = it.getStringExtra("luz");
             String proximidade = it.getStringExtra("proximidade");
 
@@ -138,17 +137,18 @@ public class MainActivity extends Activity implements SensorEventListener {
                     switchLuz.setChecked(false);
                     lanternaHelper.desligar();
                 }
-
                 if("distante".equals(proximidade)) {
-                    switchVibracao.setChecked(false);
-                    motorHelper.iniciarVibracao();
-                    Log.i("VIBRATION", "Vibração iniciada" + proximidade);
-                } else {
                     switchVibracao.setChecked(true);
-                    motorHelper.pararVibracao();
-                    Log.i("VIBRATION", "Vibração iniciada" + proximidade);
-                }
 
+                    new Handler().postDelayed(() -> {
+                        motorHelper.iniciarVibracao();
+                        Log.i("VIBRATION", "Vibração iniciada  " + proximidade);
+                    }, 300);
+                } else {
+                    switchVibracao.setChecked(false);
+                    motorHelper.pararVibracao();
+                    Log.i("VIBRATION", "Vibração iniciada " + proximidade);
+                }
             }
         }
     }
